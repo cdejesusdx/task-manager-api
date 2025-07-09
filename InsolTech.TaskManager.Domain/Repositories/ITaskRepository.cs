@@ -10,6 +10,6 @@ namespace InsolTech.TaskManager.Domain.Repositories
         Task<int> SaveChangesAsync();
 
         Task<TodoItem?> GetByIdAsync(Guid id);
-        Task<IEnumerable<Task>> GetAllAsync(int page, int pageSize);
+        Task<IEnumerable<TodoItem>> GetAllAsync(int page, int pageSize);
     }
 }
