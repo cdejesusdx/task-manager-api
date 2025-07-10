@@ -9,7 +9,16 @@ namespace InsolTech.TaskManager.Application.Mapping
     {
         public MappingProfile()
         {
+            // Para listar
             CreateMap<TaskItem, TaskDto>().ReverseMap();
+
+            // Para crear
+            CreateMap<TaskCreateDto, TaskItem>()
+                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow));
+
+            // Para actualizar
+            CreateMap<TaskUpdateDto, TaskItem>()
+                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore()); // no sobrescribir
         }
     }
 }

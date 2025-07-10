@@ -1,4 +1,4 @@
-﻿using TaskStatus = InsolTech.TaskManager.Domain.Enums.TaskStatus;
+﻿using TaskProgressStatus = InsolTech.TaskManager.Domain.Enums.TaskProgressStatus;
 
 namespace InsolTech.TaskManager.Domain.Entities
 {
@@ -14,6 +14,6 @@ namespace InsolTech.TaskManager.Domain.Entities
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? DueDate { get; set; }
-        public TaskStatus Status { get; set; } = TaskStatus.Pending;
+        public TaskProgressStatus Status { get; set; } = TaskProgressStatus.Pending;
     }
 }

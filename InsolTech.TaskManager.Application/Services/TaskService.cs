@@ -12,9 +12,13 @@ namespace InsolTech.TaskManager.Application.Services
     {
         private readonly IMapper _map = map;
         private readonly ITaskRepository _repo = repo;
-        
-        /* ---------- CREAR ---------- */
-        public async Task<Guid> CreateAsync(TaskDto dto)
+
+        /// <summary>
+        /// Crea una nueva tarea.
+        /// </summary>
+        /// <param name="dto">Datos de la tarea a crear.</param>
+        /// <returns>Guid de la tarea recién creada.</returns>
+        public async Task<Guid> CreateAsync(TaskCreateDto dto)
         {
             var entity = _map.Map<TaskItem>(dto);
             await _repo.AddAsync(entity);
@@ -22,8 +26,12 @@ namespace InsolTech.TaskManager.Application.Services
             return entity.Id;
         }
 
-        /* ---------- ACTUALIZAR ---------- */
-        public async Task UpdateAsync(Guid id, TaskDto dto)
+        /// <summary>
+        /// Actualiza una tarea existente.
+        /// </summary>
+        /// <param name="id">Identificador de la tarea.</param>
+        /// <param name="dto">Datos que se van a actualizar.</param>
+        public async Task UpdateAsync(Guid id, TaskUpdateDto dto)
         {
             var entity = await _repo.GetByIdAsync(id)
                          ?? throw new KeyNotFoundException($"Task {id} not found");
@@ -32,13 +40,16 @@ namespace InsolTech.TaskManager.Application.Services
             entity.Title = dto.Title;
             entity.Description = dto.Description;
             entity.DueDate = dto.DueDate;
-            entity.Status = (Domain.Enums.TaskStatus)dto.Status;
+            entity.Status = dto.Status;
 
             _repo.Update(entity);
             await _repo.SaveChangesAsync();
         }
 
-        /* ---------- ELIMINAR ---------- */
+        /// <summary>
+        /// Elimina una tarea de forma permanente.
+        /// </summary>
+        /// <param name="id">Identificador de la tarea.</param>
         public async Task DeleteAsync(Guid id)
         {
             var entity = await _repo.GetByIdAsync(id)
@@ -47,7 +58,13 @@ namespace InsolTech.TaskManager.Application.Services
             await _repo.SaveChangesAsync();
         }
 
-        /* ---------- OBTENER POR ID ---------- */
+        /// <summary>
+        /// Obtiene una tarea por su <paramref name="id"/>.
+        /// </summary>
+        /// <param name="id">Identificador único de la tarea.</param>
+        /// <exception cref="KeyNotFoundException">
+        /// Se lanza si no existe una tarea con el identificador proporcionado.
+        /// </exception>
         public async Task<TaskDto> GetAsync(Guid id)
         {
             var entity = await _repo.GetByIdAsync(id)
@@ -55,7 +72,14 @@ namespace InsolTech.TaskManager.Application.Services
             return _map.Map<TaskDto>(entity);
         }
 
-        /* ---------- LISTAR PAGINADO ---------- */
+        /// <summary>
+        /// Devuelve una página de tareas según los parámetros indicados.
+        /// </summary>
+        /// <param name="page">Número de página (empieza en 1).</param>
+        /// <param name="size">Cantidad de registros por página.</param>
+        /// <returns>
+        /// Objeto <see cref="PaginatedList{TaskDto}"/> con la lista de tareas y metadatos de paginación.
+        /// </returns>
         public async Task<PaginatedList<TaskDto>> GetAsync(int page, int size)
         {
             // 1) Consulta IQueryable

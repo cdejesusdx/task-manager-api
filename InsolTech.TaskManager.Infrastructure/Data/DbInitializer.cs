@@ -1,5 +1,5 @@
 ﻿using InsolTech.TaskManager.Domain.Entities;
-using TaskStatus = InsolTech.TaskManager.Domain.Enums.TaskStatus;
+using TaskProgressStatus = InsolTech.TaskManager.Domain.Enums.TaskProgressStatus;
 
 namespace InsolTech.TaskManager.Infrastructure.Data
 {
@@ -14,7 +14,7 @@ namespace InsolTech.TaskManager.Infrastructure.Data
                     {
                         Title = "Diseñar el formulario de creación",
                         Description = "Usar Reactive Forms en Angular",
-                        Status = TaskStatus.Pending,
+                        Status = TaskProgressStatus.Pending,
                         CreatedAt = DateTime.UtcNow,
                         DueDate = DateTime.UtcNow.AddDays(3)
                     },
@@ -22,7 +22,7 @@ namespace InsolTech.TaskManager.Infrastructure.Data
                     {
                         Title = "Conectar Angular con API",
                         Description = "Testear todos los métodos del CRUD",
-                        Status = TaskStatus.InProgress,
+                        Status = TaskProgressStatus.InProgress,
                         CreatedAt = DateTime.UtcNow.AddDays(-1),
                         DueDate = DateTime.UtcNow.AddDays(2)
                     },
@@ -30,7 +30,7 @@ namespace InsolTech.TaskManager.Infrastructure.Data
                     {
                         Title = "Configurar Swagger y CORS",
                         Description = "Verificar acceso desde frontend",
-                        Status = TaskStatus.Completed,
+                        Status = TaskProgressStatus.Completed,
                         CreatedAt = DateTime.UtcNow.AddDays(-2),
                         DueDate = DateTime.UtcNow.AddDays(-1)
                     }

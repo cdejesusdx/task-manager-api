@@ -1,9 +1,10 @@
-using InsolTech.TaskManager.Api.Middlewares; 
-using InsolTech.TaskManager.Application.Extensions;
+﻿using Microsoft.OpenApi.Models;
+
+using InsolTech.TaskManager.Api.Middlewares;
 using InsolTech.TaskManager.Application.Mapping;
 using InsolTech.TaskManager.Infrastructure.Data;
+using InsolTech.TaskManager.Application.Extensions;
 using InsolTech.TaskManager.Infrastructure.Extensions;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,8 +39,16 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Task Manager API",
         Version = "v1",
-        Description = "API para gesti�n de tareas con .NET + Angular"
+        Description = "API para gestión de tareas con .NET + Angular"
     });
+
+    // ⬇️  Rutas de los archivos XML generados
+    var apiXml = Path.Combine(AppContext.BaseDirectory, "InsolTech.TaskManager.Api.xml");
+    c.IncludeXmlComments(apiXml);
+
+    var appXml = Path.Combine(AppContext.BaseDirectory, "InsolTech.TaskManager.Application.xml");
+    if (File.Exists(appXml))
+        c.IncludeXmlComments(appXml);
 });
 
 var app = builder.Build();

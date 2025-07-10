@@ -4,6 +4,13 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- ⬇️  Generar archivo XML de documentación -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- Evitar warnings por objetos sin docs            -->
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    
   </PropertyGroup>
 
   <ItemGroup>
