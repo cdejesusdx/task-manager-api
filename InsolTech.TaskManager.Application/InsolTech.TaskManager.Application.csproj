@@ -4,16 +4,21 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <!-- ⬇️  Generar archivo XML de documentación -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- Evitar warnings por objetos sin docs            -->
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <ProjectReference Include="..\InsolTech.TaskManager.Domain\InsolTech.TaskManager.Domain.csproj" />
   </ItemGroup>
 
 </Project>

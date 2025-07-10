@@ -4,10 +4,23 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- ⬇️  Generar archivo XML de documentación -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- Evitar warnings por objetos sin docs            -->
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InsolTech.TaskManager.Application\InsolTech.TaskManager.Application.csproj" />
+    <ProjectReference Include="..\InsolTech.TaskManager.Infrastructure\InsolTech.TaskManager.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
