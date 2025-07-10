@@ -1,5 +1,7 @@
-﻿using InsolTech.TaskManager.Application.Validators;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+
+using InsolTech.TaskManager.Domain.Enums;
+using InsolTech.TaskManager.Application.Validators;
 
 namespace InsolTech.TaskManager.Application.DTOs
 {
@@ -14,6 +16,6 @@ namespace InsolTech.TaskManager.Application.DTOs
         [FutureDate(ErrorMessage = "La fecha límite debe ser futura")]
         public DateTime? DueDate { get; set; }
         
-        public TaskStatus Status { get; set; }
+        public TaskProgressStatus Status { get; set; }
     }
 }

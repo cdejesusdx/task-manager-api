@@ -1,4 +1,6 @@
-﻿namespace InsolTech.TaskManager.Application.DTOs
+﻿using InsolTech.TaskManager.Domain.Enums;
+
+namespace InsolTech.TaskManager.Application.DTOs
 {
     public class TaskDto
     {
@@ -7,6 +9,6 @@
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? DueDate { get; set; }
-        public TaskStatus Status { get; set; }
+        public TaskProgressStatus Status { get; set; }
     }
 }

@@ -1,4 +1,4 @@
 ﻿namespace InsolTech.TaskManager.Domain.Enums
 {
-    public enum TaskStatus { Pending, InProgress, Completed }
+    public enum TaskProgressStatus { Pending, InProgress, Completed }
 }

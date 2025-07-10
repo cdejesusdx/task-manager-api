@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using InsolTech.TaskManager.Domain.Enums;
 using InsolTech.TaskManager.Application.Validators;
-
-using TaskStatus = InsolTech.TaskManager.Domain.Enums.TaskStatus;
 
 namespace InsolTech.TaskManager.Application.DTOs
 {
@@ -18,6 +17,6 @@ namespace InsolTech.TaskManager.Application.DTOs
         
         public DateTime? DueDate { get; set; }
         
-        public TaskStatus Status { get; set; } = TaskStatus.Pending;
+        public TaskProgressStatus Status { get; set; } = TaskProgressStatus.Pending;
     }
 }
