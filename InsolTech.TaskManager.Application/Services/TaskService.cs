@@ -14,7 +14,7 @@ namespace InsolTech.TaskManager.Application.Services
         private readonly ITaskRepository _repo = repo;
         
         /* ---------- CREAR ---------- */
-        public async Task<Guid> CreateAsync(TaskDto dto)
+        public async Task<Guid> CreateAsync(TaskCreateDto dto)
         {
             var entity = _map.Map<TaskItem>(dto);
             await _repo.AddAsync(entity);
@@ -23,7 +23,7 @@ namespace InsolTech.TaskManager.Application.Services
         }
 
         /* ---------- ACTUALIZAR ---------- */
-        public async Task UpdateAsync(Guid id, TaskDto dto)
+        public async Task UpdateAsync(Guid id, TaskUpdateDto dto)
         {
             var entity = await _repo.GetByIdAsync(id)
                          ?? throw new KeyNotFoundException($"Task {id} not found");

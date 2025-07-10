@@ -5,21 +5,21 @@ using InsolTech.TaskManager.Application.Interfaces;
 
 namespace InsolTech.TaskManager.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/tasks-manager")]
     [ApiController]
     public class TasksController(ITaskService taskService) : ControllerBase
     {
         private readonly ITaskService _taskService = taskService;
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] TaskDto dto)
+        public async Task<IActionResult> Post([FromBody] TaskCreateDto dto)
         {
             var id = await _taskService.CreateAsync(dto);
             return CreatedAtAction(nameof(Get), new { id }, null);
         }
 
         [HttpPut("{id:guid}")]
-        public async Task<IActionResult> Put(Guid id, TaskDto dto)
+        public async Task<IActionResult> Put(Guid id, TaskUpdateDto dto)
         { 
             await _taskService.UpdateAsync(id, dto); return NoContent(); 
         }
